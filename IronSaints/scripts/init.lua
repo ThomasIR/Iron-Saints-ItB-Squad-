@@ -89,20 +89,10 @@ require(self.scriptPath.."weapons/recovery_shot")
 require(self.scriptPath.."weapons/force_reflector")
 modApi:addWeapon_Texts(require(self.scriptPath.."weapon_texts"))
 
---[[modApi:addGenerationOption(
-    "icedamage", "Challenge Mode",
-    "Frostfire Mech's ice shots deal damage as well.",
-    {enabled = false}
-)]]--
-
 end
 
 local function load(self,options,version)
   modApi:addSquadTrue({"Iron Saints","MartyrMech","HaloMech","SalveMech"},"Iron Saints","From a timeline dominated by an austere theocracy, these Mechs will suffer any amount of punishment to eliminate the Vek.",self.resourcePath.."/squad.png")
-  --[[freezinginferno_icedamage = false
-  if options["icedamage"].enabled then
-    freezinginferno_icedamage = true
-  end]]--
 end
 
 return {
