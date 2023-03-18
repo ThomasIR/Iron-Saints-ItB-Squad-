@@ -6,7 +6,6 @@ for k,v in pairs(wt2) do Weapon_Texts[k] = v end
 
 ----- NEEDLE VENTS -----
 Needle_Vents = Skill:new{
-    -- PathSize = 1,
     Class = "Prime",
     Damage = 2,
 	BuildingDamage = true,
@@ -99,7 +98,7 @@ function Needle_Vents:GetSkillEffect(p1, p2)
 			end
 			
 			damage.sSound = "/impact/generic/explosion"
-			damage.sAnimation = "explopush1_"..i
+			damage.sAnimation = "explohornet_"..dir
 			ret:AddDamage(damage2)			
 		end
 	end
