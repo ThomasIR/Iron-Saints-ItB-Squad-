@@ -1,0 +1,26 @@
+local weaponTexts = {
+Needle_Vents_Name = "Needle Vents",
+Needle_Vents_Description = "Blast all adjacent tiles, turning units to face you.",
+Needle_Vents_Upgrade1 = "Buildings Immune",
+Needle_Vents_A_UpgradeDescription = "This attack will no longer damage Grid Buildings.",
+Needle_Vents_Upgrade2 = "Gain Shield",
+Needle_Vents_B_UpgradeDescription = "Gain a Shield when attacking.",
+Magnetic_Pulse_Name = "Magnetic Pulse",
+Magnetic_Pulse_Description = "Fire two projectiles in opposite directions, pulling targets toward you.",
+Magnetic_Pulse_Upgrade1 = "Shield Allies",
+Magnetic_Pulse_Upgrade2 = "+1 Damage",
+Magnetic_Pulse_A_UpgradeDescription = "If used on an ally unit it gives them a Shield.",
+Magnetic_Pulse_B_UpgradeDescription = "Increases damage to enemy units by 1.",
+Recovery_Shot_Name = "Recovery Shot",
+Recovery_Shot_Description = "Heal target if it's an ally unit and cause it to push adjacent tile.",
+Recovery_Shot_Upgrade1 = "Full Heal",
+Recovery_Shot_Upgrade2 = "+2 Damage",
+Recovery_Shot_A_UpgradeDescription = "If used on an ally unit it heals them completely.",
+Recovery_Shot_B_UpgradeDescription = "Increases damage to the pushed unit by 2.",
+Force_Reflector_Name = "Force Reflector",
+Force_Reflector_Description = "Vek take damage when they hit a Mech.",
+Passive_Force_Reflector_Upgrade1 = "+1 Damage",
+Passive_Force_Reflector_A_UpgradeDescription = "Increases damage by 1.",
+}
+
+return weaponTexts
