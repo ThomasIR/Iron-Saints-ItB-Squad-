@@ -23,9 +23,9 @@ local function init(self)
 
         Default =           { PosX = -21, PosY = -6 },
         Animated =          { PosX = -21, PosY = -6, NumFrames = 4 },
-        Submerged =         { PosX = -21, PosY = 0 },
-        Broken =            { PosX = -21, PosY = 0 },
-        SubmergedBroken =   { PosX = -21, PosY = 4 },
+        Submerged =         { PosX = -21, PosY = -3 },
+        Broken =            { PosX = -21, PosY = -6 },
+        SubmergedBroken =   { PosX = -21, PosY = -3 },
         Icon =              {},
     },
     {
@@ -37,9 +37,9 @@ local function init(self)
 
         Default =           { PosX = -27, PosY = -6 },
         Animated =          { PosX = -27, PosY = -6, NumFrames = 4 },
-        Submerged =         { PosX = -27, PosY = 0 },
+        Submerged =         { PosX = -27, PosY = -6 },
         Broken =            { PosX = -27, PosY = -2 },
-        SubmergedBroken =   { PosX = -27, PosY = 4 },
+        SubmergedBroken =   { PosX = -27, PosY = -1 },
         Icon =              {},
     },
     {
