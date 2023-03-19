@@ -30,7 +30,7 @@ Recovery_Shot = LineArtillery:new{
 
 function Recovery_Shot:IsEnrageable(curr)
 		
-	if self.AnyTarget and Board:IsBlocked(curr, PATH_GROUND) then
+	if self.AnyTarget and Board:IsBlocked(curr, PATH_FLYER) then
 		return true
 	end
 
@@ -84,16 +84,17 @@ end
 function Recovery_Shot:GetFinalEffect(p1,p2,p3)
 	local direction = GetDirection(p3 - p2)
 	local ret = SkillEffect()
-
-	if Board:IsPawnSpace(p2) and Board:IsPawnTeam(p2, TEAM_PLAYER) then
-		ret:AddDamage(SpaceDamage(p2,self.Healing, FULL_DELAY))
-	end
 	
 	ret:AddArtillery(SpaceDamage(p2,0), "advanced/effects/shotup_swapother.png", FULL_DELAY)
 	
 	local dummy_damage = SpaceDamage(p2,0)
 	dummy_damage.sAnimation = "ExploRepulseSmall"
 	ret:AddDamage(dummy_damage)
+
+	if Board:IsPawnSpace(p2) and Board:IsPawnTeam(p2, TEAM_PLAYER) then
+		ret:AddDamage(SpaceDamage(p2,self.Healing))
+	end
+
 	ret:AddDelay(0.2)
 	
 	local final_damage = self.Damage
@@ -128,4 +129,3 @@ Recovery_Shot_AB = Recovery_Shot:new{
 			Second_Click = Point(3,1),
 		},]]--
 }
-
