@@ -79,8 +79,8 @@ Force_Reflector_SkillEffect = function(mission, pawn, weaponId, p1, p2, skillEff
                 --Increase the queued targets by 1. The differentiation is important else the enemy will attack directly and suffer the damage.
                 countedtargets_q = countedtargets_q + 1
                 lastTargetLocation_q = spaceDamage.loc
-                LOG("Attempted Target Location: ", spaceDamage.loc:GetString())
-                LOG("Last Target Location: ", lastTargetLocation_q:GetString())
+                --LOG("Attempted Target Location: ", spaceDamage.loc:GetString())
+                --LOG("Last Target Location: ", lastTargetLocation_q:GetString())
                 modifyEffect = true
             end
         end
@@ -109,9 +109,21 @@ Force_Reflector_SkillEffect = function(mission, pawn, weaponId, p1, p2, skillEff
         --This one is for queued attacks. Most if not all enemy attacks will be these
         if countedtargets_q > 0
         then
+            --[[LOG("Attacker Name: ", Board:GetPawn(p1):GetType())
+
+            if Game:GetTeamTurn() == TEAM_ENEMY then
+                LOG("Team Turn: ENEMY")
+            end
+
+            if Game:GetTeamTurn() == TEAM_PLAYER then
+                LOG("Team Turn: PLAYER")
+            end]]--
+        
             -- Make sure damage reflected to moths targets the correct tile
-            if (Board:GetPawn(p1):GetType() == "Moth1" or Board:GetPawn(p1):GetType() == "Moth2") and Game:GetTeamTurn() == TEAM_ENEMY then
+            if (Board:GetPawn(p1):GetType() == "Moth1" or Board:GetPawn(p1):GetType() == "Moth2") then
+                
                 --LOG("OLD p1 = ", p1:GetString())
+
                 for dir = DIR_START, DIR_END do
 		            local newTarget = p1 + DIR_VECTORS[dir]
                     if GetDirection(p2 - p1) == GetDirection(p1 - newTarget) and not Board:IsBlocked(newTarget, PATH_GROUND) then
@@ -126,36 +138,19 @@ Force_Reflector_SkillEffect = function(mission, pawn, weaponId, p1, p2, skillEff
 
             p2 = lastTargetLocation_q;
             
-            --[[LOG("NEW p2 = ", p2:GetString())
-            LOG("Attacker Name: ", Board:GetPawn(p1):GetType())
-            
-            if Game:GetTeamTurn() == TEAM_ENEMY then
-                LOG("Team Turn: ENEMY")
-            end
-
-            if Game:GetTeamTurn() == TEAM_PLAYER then
-                LOG("Team Turn: PLAYER")
-            end]]--
+            --[[LOG("NEW p2 = ", p2:GetString())]]--
 
             -- Do the same for beetles
-            if (Board:GetPawn(p1):GetType() == "Beetle1" or Board:GetPawn(p1):GetType() == "Beetle2"
+            if Board:IsPawnSpace(p1) and (Board:GetPawn(p1):GetType() == "Beetle1" or Board:GetPawn(p1):GetType() == "Beetle2"
                 or Board:GetPawn(p1):GetType() == "BurnbugBoss") then
                 
-                --[[if Game:GetTeamTurn() == TEAM_ENEMY then
-                    LOG("Team Turn: ENEMY")
-                end
-
-                if Game:GetTeamTurn() == TEAM_PLAYER then
-                    LOG("Team Turn: PLAYER")
-                end
-                
-                LOG("OLD p1 = ", p1:GetString())]]--
+                --LOG("OLD p1 = ", p1:GetString())]]--
 
                 for dir = DIR_START, DIR_END do
 		            local newTarget = lastTargetLocation_q + DIR_VECTORS[dir]
                     if GetDirection(lastTargetLocation_q - p1) == GetDirection(lastTargetLocation_q - newTarget) then
                         p1 = newTarget
-                        LOG("NEW p1 = ", p1:GetString())
+                        --LOG("NEW p1 = ", p1:GetString())--
                     end
                 end
             end
