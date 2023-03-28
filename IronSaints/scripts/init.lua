@@ -7,11 +7,11 @@ local function init(self)
         Path = "img/units/player",
         ResourcePath = "units/player",
 
-        Default =           { PosX = -16, PosY = -5 },
-        Animated =          { PosX = -16, PosY = -5, NumFrames = 4 },
-        Submerged =         { PosX = -16, PosY = 3 },
-        Broken =            { PosX = -16, PosY = -3 },
-        SubmergedBroken =   { PosX = -16, PosY = 5 },
+        Default =           { PosX = -17, PosY = -8 },
+        Animated =          { PosX = -17, PosY = -8, NumFrames = 4 },
+        Submerged =         { PosX = -17, PosY = 3 },
+        Broken =            { PosX = -17, PosY = -6 },
+        SubmergedBroken =   { PosX = -17, PosY = 5 },
         Icon =              {},
     },
     {
