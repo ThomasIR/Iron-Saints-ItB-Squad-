@@ -1,6 +1,6 @@
 local wt2 = {
-	Magnetic_Pulse_Upgrade1 = "Shield Allies",
-	Magnetic_Pulse_Upgrade2 = "+1 Damage" ,
+	Magnetic_Pulse_Upgrade1 = "Shield Ally",
+	Magnetic_Pulse_Upgrade2 = "Hurt Enemy",
 }
 for k,v in pairs(wt2) do Weapon_Texts[k] = v end
 
@@ -38,13 +38,18 @@ function Magnetic_Pulse:GetSkillEffect(p1,p2)
 	ret:AddDamage(dummy_damage)
 	
 	local damage = SpaceDamage(target, self.Damage, GetDirection(p1 - p2))
-	if Board:IsPawnTeam(target, TEAM_PLAYER) then
+	if not Board:IsValid(target) or not Board:IsPawnTeam(target, TEAM_ENEMY) then
 		damage.iDamage = 0
+	end
+	if Board:IsPawnTeam(target, TEAM_PLAYER) then
 		local shielddamage = SpaceDamage(target,0)
 		shielddamage.iShield = self.ShieldAlly
 		ret:AddDamage(shielddamage)
 	end
 	--ret.path = Board:GetSimplePath(p1, target)
+	if damage.iDamage > 0 then
+		damage.sAnimation = self.Explo..GetDirection(p1 - p2)
+	end
 	ret:AddProjectile(damage,"effects/shot_pull", NO_DELAY)
 		
 	if self.BackShot == 1 then
@@ -53,16 +58,19 @@ function Magnetic_Pulse:GetSkillEffect(p1,p2)
 
 		if target2 ~= p1 then
 			damage = SpaceDamage(target2, self.Damage, GetDirection(p2 - p1))
-				
-			if Board:IsPawnTeam(target2, TEAM_PLAYER) then
+			if not Board:IsValid(target2) or not Board:IsPawnTeam(target2, TEAM_ENEMY) then
 				damage.iDamage = 0
+			end
+			if Board:IsPawnTeam(target2, TEAM_PLAYER) then
 				local shielddamage = SpaceDamage(target2,0)
 				shielddamage.iShield = self.ShieldAlly
 				ret:AddDamage(shielddamage)
 			end
 		
-			damage.sAnimation = self.Explo..GetDirection(p2 - p1)
-			ret:AddProjectile(damage,self.ProjectileArt)
+			if damage.iDamage > 0 then
+				damage.sAnimation = self.Explo..GetDirection(p2 - p1)
+			end
+			ret:AddProjectile(damage,"effects/shot_pull", NO_DELAY)
 		end
 	end
 	
