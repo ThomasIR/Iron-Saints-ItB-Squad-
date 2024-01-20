@@ -106,8 +106,9 @@ Force_Reflector_SkillEffect = function(mission, pawn, weaponId, p1, p2, skillEff
         --This one is for queued attacks. Most if not all enemy attacks will be these
         if countedtargets_q > 0
         then
-            -- Make sure damage reflected to moths targets the correct tile
-            if (Board:GetPawn(p1):GetType() == "Moth1" or Board:GetPawn(p1):GetType() == "Moth2") then
+            -- Make sure damage reflected to moths and bouncers targets the correct tile
+            if (Board:GetPawn(p1):GetType() == "Moth1" or Board:GetPawn(p1):GetType() == "Moth2" or Board:GetPawn(p1):GetType() == "Bouncer1"
+                or Board:GetPawn(p1):GetType() == "Bouncer2" or Board:GetPawn(p1):GetType() == "BouncerBoss") then
                 for dir = DIR_START, DIR_END do
 		            local newTarget = p1 + DIR_VECTORS[dir]
                     if GetDirection(p2 - p1) == GetDirection(p1 - newTarget) and not Board:IsBlocked(newTarget, PATH_GROUND) then
